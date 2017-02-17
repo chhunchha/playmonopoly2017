@@ -14,7 +14,11 @@
 <template ngbModalContainer></template>
 
 <div class="container prize-cards">
-    <div class="card mt-3 card-shadow prize-card" *ngFor="let prize of board">
+    <div class="form-group col-12 col-xs-12">
+      <input type="text" class="form-control" id="searchTicket" placeholder="Seach Ticket code" [(ngModel)]="search_ticket_code">
+    </div>
+
+    <div class="card mt-3 card-shadow prize-card" *ngFor="let prize of board | ticketFilter : search_ticket_code">
       <div class="card-header" [style.background]="prize.color">
         {{prize.name}}
       </div>
