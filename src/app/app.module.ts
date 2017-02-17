@@ -16,6 +16,8 @@ import { BoardComponent } from './board/board.component';
 import { BoardService } from './services/board/board.service';
 import { UserTicketsService } from './services/user-tickets/user-tickets.service';
 import { TicketsService } from './services/tickets/tickets.service';
+import { UsersService } from './services/users/users.service';
+
 
 import * as _ from "lodash";
 import { TicketFilterPipe } from './pipes/ticket-filter.pipe';
@@ -51,7 +53,7 @@ const authConfig = {
     // MaterialModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig, authConfig, 'playmonopoly2017'),
   ],
-  providers: [AuthService, BoardService, UserTicketsService, TicketsService],
+  providers: [AuthService, BoardService, UserTicketsService, TicketsService, UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
