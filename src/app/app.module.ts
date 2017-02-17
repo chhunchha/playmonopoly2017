@@ -19,6 +19,7 @@ import { TicketsService } from './services/tickets/tickets.service';
 
 import * as _ from "lodash";
 import { TicketFilterPipe } from './pipes/ticket-filter.pipe';
+import { IntroductionComponent } from './introduction/introduction.component';
 
 // Must export the config
 export const firebaseConfig = {
@@ -39,7 +40,8 @@ const authConfig = {
     AppComponent,
     AuthComponent,
     BoardComponent,
-    TicketFilterPipe
+    TicketFilterPipe,
+    IntroductionComponent
   ],
   imports: [
     BrowserModule,

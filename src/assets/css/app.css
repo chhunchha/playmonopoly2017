@@ -67,9 +67,7 @@ body {
 	padding-right: 10px; 
 }
 
-.main {
-	padding-top: 60px;
-}
+
 .welcome {
 	font-size: 18px;
 	background: white;
@@ -273,7 +271,7 @@ tr:hover {
 }
 
 .prize-cards {
-	margin-top: 80px;
+	padding-top: 80px;
 }
 
 .prize-card {

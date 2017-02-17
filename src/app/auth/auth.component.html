@@ -8,12 +8,12 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link"  href="#board" target="_self">Board</a>
-        </li>
-        <!--<li class="nav-item">
-          <a class="nav-link"  href="#match" target="_self">Match</a>
+          <a [hidden]="!this.authService.isAuthenticated()" class="nav-link"  href="#board" target="_self">Board</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link"  href="#match" target="_self">Match</a>
+        </li>
+        <!--li class="nav-item">
           <a class="nav-link"  href="#analysis" target="_self">Analysis</a>
         </li>-->
       </ul>
