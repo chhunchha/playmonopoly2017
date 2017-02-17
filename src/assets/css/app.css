@@ -1,0 +1,284 @@
+body {
+	/*padding: 10px;*/
+	font-size: 14px !important;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	background-image: url("../images/bg-pattern.png");
+	background-color: #cfe7ce;
+}
+
+/****************/
+
+.heading-lbl {
+	font-weight: 500;
+	font-size: 18px;
+	margin-top: 5px;
+}
+
+.sc-float-left {
+	float: left;
+}
+
+.sc-float-right {
+	float: right;
+}
+
+/*****************/
+
+.content {
+	height: calc(100% - 80px);
+	position: absolute;
+	top: 80px;
+	left: 0px;
+	width: 100%;
+	/*overflow: hidden;*/
+	/*background: #f3f3f3;*/
+	padding: 20px;
+}
+
+.navbar .navbar-brand {
+	color: white !important;
+}
+
+.navbar {
+    background-color: rgba(237,29, 3, 1) !important;
+    border-color: rgba(237,29, 3, 1) !important;
+}
+
+.navbar .navbar-nav>li>a {
+	color: white !important;
+	font-weight: 700;
+}
+
+.navbar .navbar-nav>.active>a, .navbar .navbar-nav>.active>a:focus, .navbar .navbar-nav>.active>a:hover {
+    color: #555;
+    background-color: rgba(255, 255, 255, 0.5) !important;
+}
+.navbar .btn-secondary {
+	background: transparent;
+	color: white;
+	outline: none;
+	border: none;
+	cursor: pointer;
+}
+
+.nav-item {
+	/*border-right: 1px solid rgba(255,255,255,0.4);*/
+	padding-left: 10px;
+	padding-right: 10px; 
+}
+
+.main {
+	padding-top: 60px;
+}
+.welcome {
+	font-size: 18px;
+	background: white;
+}
+.profileImage {
+	height: 35px;
+	width: 35px;
+	border-radius: 50%;
+}
+
+.headerField {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.ticket-gif {
+	float: left;
+	width: 110px;
+}
+
+#info-help-body {
+	line-height: 25px;
+}
+
+.userInfo {
+	text-align: right;
+}
+.userName {
+	margin: 15px 5px;
+	font-size: 18px;
+	font-weight: 700;
+	line-height: 50px;
+}
+
+.panel {
+	background-color: transparent !important;
+}
+
+.panel-body {
+	background: rgba(255,255,255,0.8) !important;
+}
+
+.searchRow {
+	padding-bottom: 10px;
+	/*background: rgba(255, 255, 255, 0.7);*/
+}
+/*#searchPrize, #searchTicket {
+	width: 80%;
+	display: inline-block;
+}*/
+
+.ticket {
+	height: 200px;
+	width: 80px;
+	border: 1px solid lightgray;
+	margin: 10px;
+	text-align: center;
+	display: inline-block;
+	background: #fff;
+}
+
+.code {
+	height: 30px;
+	line-height: 30px;
+	width: 100%;
+	border-bottom: 1px solid lightgray;
+	font-weight: 500;
+	font-size: 16px;
+	letter-spacing:1px;
+	background: white;
+}
+
+.status {
+	width: 100%;
+    margin-top: 15px;
+}
+
+.iHaveIt {
+	background-color: #ADD6B0;
+}
+
+.extras {
+	height: 28px;
+	width: 100%;
+	line-height: 30px;
+}
+
+.iHaveExtra {
+	background-color: yellow;
+}
+
+.plus-button, .minus-button {
+	font-size: 24px;
+	font-weight: 700;
+	cursor: pointer;
+	background: #E5E5E5;
+	margin: auto;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+
+	-webkit-user-select: none; /* webkit (safari, chrome) browsers */
+    -moz-user-select: none; /* mozilla browsers */
+    -khtml-user-select: none; /* webkit (konqueror) browsers */
+    -ms-user-select: none; /* IE10+ */
+}
+
+.no-of-tickets {
+	margin: auto;
+    position: relative;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    padding: 15px;
+	font-weight: 600;
+	font-size: 16px;
+}
+
+.plus-button:hover, .minus-button:hover {
+	background-color: #f0f0f0;
+}
+.cursor-pointer {
+	cursor: pointer;
+}
+
+.results {
+	max-height: 600px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+table {
+	background: white;
+}
+
+tr:hover {
+	background-color: #f0f0f0;
+}
+
+.noOfResults {
+	line-height: 20px;
+	padding-left: 7px;
+}
+
+.panel-default {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	border: none !important;
+}
+
+.panel-title {
+	font-weight: 600 !important;
+	font-size: 16px !important;
+}
+
+.panel-heading.header-color-red {
+	background-color: rgb(237,29, 3);
+	color: white;
+}
+
+.panel-heading.header-color-brown {
+	background-color: #8B3B2A;
+	color: white;
+}
+
+.panel-heading.header-color-sky_blue {
+	background-color: #81ACCB;
+}
+
+.panel-heading.header-color-pink {
+	background-color: #BF487D;
+	color: white;
+}
+
+.panel-heading.header-color-orange {
+	background-color: rgba(255, 96, 0, 1);;
+	color: white;
+}
+
+.panel-heading.header-color-blue {
+	background-color: #0B3B7E;
+	color: white;
+}
+
+.panel-heading.header-color-yellow {
+	background-color: #F7D961;
+}
+
+.panel-heading.header-color-green {
+	background-color: #007B40;
+	color: white;
+}
+
+.find-form-group {
+	min-height: 95px;
+}
+
+.card-header {
+    color: white;
+    font-size: 22px;
+    padding: 0.2em 0.5em;
+}
+
+.prize-cards {
+	margin-top: 80px;
+}
+
+.prize-card {
+	background: rgba(255, 255, 255, 0.4);
+}
+.card-shadow {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

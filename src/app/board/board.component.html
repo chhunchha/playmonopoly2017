@@ -1,0 +1,52 @@
+<!-- modal -->
+<template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">{{message.title}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p [innerHTML]="message.text"></p>
+  </div>
+</template>
+
+<template ngbModalContainer></template>
+
+<div class="container prize-cards">
+    <div class="card mt-3 card-shadow prize-card" *ngFor="let prize of board">
+      <div class="card-header" [style.background]="prize.color">
+        {{prize.name}}
+      </div>
+      <div class="card-block">
+        <!--<h6 class="card-subtitle mb-2 text-muted"></h6>-->
+        <!--<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+        <!--<a href="#" class="card-link">Card link</a>
+    <a href="#" class="card-link">Another link</a>-->
+
+        <div class="ticket" *ngFor="let ticket of prize.tickets" [ngClass]="{'iHaveIt' : user_tickets[ticket] > 0}">
+          <div class="code">
+            {{ticket}}
+          </div>
+
+          <div class="status" >
+            <div class="plus-button" (click)="increment(ticket, content)">
+              +
+            </div>
+            <div class="no-of-tickets">
+              <span class="g" aria-hidden="true" *ngIf="user_tickets[ticket] != null">
+                {{user_tickets[ticket]}}
+              </span>
+              <span class="g" aria-hidden="true" *ngIf="user_tickets[ticket] == null">
+                0
+              </span>
+              <!-- <span ng-if="ticket.status" ng-click="ticket.status = !ticket.status" class="glyphicon glyphicon-remove" aria-hidden="true"></span> -->
+            </div>
+            <div class="minus-button" (click)="decrement(ticket)">
+              &mdash;
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
