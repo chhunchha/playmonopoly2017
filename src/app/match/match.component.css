@@ -1,0 +1,9 @@
+.container {
+    min-height: 600px;
+    font-weight: 400;
+    padding-top : 100px;
+}
+
+td, th {
+    padding-left: 10px;
+}

@@ -18,6 +18,10 @@ export class UsersService {
   }
 
   userExists(uid) {
-    return this.users[uid] != undefined;
+    return this.users[uid] !== undefined;
+  }
+
+  getUser(uid) {
+    return this.af.database.object('/users/' + uid);
   }
 }

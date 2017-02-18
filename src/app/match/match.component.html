@@ -1,0 +1,42 @@
+<template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">{{message.title}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div [innerHTML]="message.text"></div>
+  </div>
+</template>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="text-right mb-2">
+        <button class="btn btn-primary" (click)="getMissingTickets()">{{match_button_label}}</button>
+      </div>
+      <table class="table table-sm card-shadow">
+        <tr [hidden]="!(all_matches.length == 0  && searched)"> 
+          <td colspan="5" class="text-center bg-warning">
+            <strong>Looks like one has tickets which you don't have!! <p> Spread the word ask more people to join!</p></strong>
+          </td>
+        </tr>
+        <tr class="table-info">
+          <th> # </th>
+          <th> Ticket Code </th>
+          <th> Prize </th>
+          <th> No of users </th>
+          <th></th>
+        </tr>
+        <tr *ngFor="let match of all_matches; let i = index;"> 
+          <td> {{i + 1}} </td>
+          <td> {{match[0]}}</td>
+          <td> {{match[1].prize}}</td>
+          <td> {{match[1].users.length}}</td>
+          <td><button class="btn btn-sm btn-outline-info" (click)="show_user_details(match, content)">Who has it?</button></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

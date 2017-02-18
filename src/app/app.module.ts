@@ -22,7 +22,7 @@ import { UsersService } from './services/users/users.service';
 import * as _ from "lodash";
 import { TicketFilterPipe } from './pipes/ticket-filter.pipe';
 import { IntroductionComponent } from './introduction/introduction.component';
-import { MatchComponent } from './match/match/match.component';
+import { MatchComponent } from './match/match.component';
 
 // Must export the config
 export const firebaseConfig = {
