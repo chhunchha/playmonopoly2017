@@ -14,7 +14,7 @@
   <div class="row">
     <div class="col">
       <div class="text-right mb-2">
-        <button class="btn btn-primary" (click)="getMissingTickets()">{{match_button_label}}</button>
+        <button class="btn btn-primary card-shadow" (click)="getMissingTickets()">{{match_button_label}}</button>
       </div>
       <table class="table table-sm card-shadow">
         <tr [hidden]="!(all_matches.length == 0  && searched)"> 

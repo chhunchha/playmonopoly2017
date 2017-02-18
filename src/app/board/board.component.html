@@ -15,7 +15,7 @@
 
 <div class="container prize-cards">
     <div class="form-group">
-      <input type="text" class="form-control col-4 col-xs-12" id="searchTicket" placeholder="Seach Ticket code" [(ngModel)]="search_ticket_code">
+      <input type="text" class="form-control col-4 col-xs-12 card-shadow" id="searchTicket" placeholder="Seach Ticket code" [(ngModel)]="search_ticket_code">
     </div>
 
     <div class="card mt-3 card-shadow prize-card" *ngFor="let prize of board | ticketFilter : search_ticket_code">
@@ -28,7 +28,7 @@
         <!--<a href="#" class="card-link">Card link</a>
     <a href="#" class="card-link">Another link</a>-->
 
-        <div class="ticket" *ngFor="let ticket of prize.tickets" [ngClass]="{'iHaveIt' : user_tickets[ticket] > 0}">
+        <div class="ticket" *ngFor="let ticket of prize.tickets | ticketFilter : search_ticket_code" [ngClass]="{'iHaveIt' : user_tickets[ticket] > 0}">
           <div class="code">
             {{tickets[ticket].name}}
           </div>
