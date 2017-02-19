@@ -6,7 +6,6 @@ export class BoardService {
 
   board: FirebaseListObservable<any[]>;
   constructor(public af: AngularFire) { 
-    this.getBoardData();
   }
 
   getBoardData() {
