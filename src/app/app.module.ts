@@ -23,6 +23,7 @@ import * as _ from "lodash";
 import { TicketFilterPipe } from './pipes/ticket-filter.pipe';
 import { IntroductionComponent } from './introduction/introduction.component';
 import { MatchComponent } from './match/match.component';
+import { MailchimpComponent } from './mailchimp/mailchimp.component';
 
 // Must export the config
 export const firebaseConfig = {
@@ -45,7 +46,8 @@ const authConfig = {
     BoardComponent,
     TicketFilterPipe,
     IntroductionComponent,
-    MatchComponent
+    MatchComponent,
+    MailchimpComponent
   ],
   imports: [
     BrowserModule,

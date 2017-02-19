@@ -2,3 +2,4 @@
 <app-introduction [hidden]="this.authService.isAuthenticated()"></app-introduction>
 <app-board id="board" [hidden]="!this.authService.isAuthenticated()"></app-board>
 <app-match id="match" [hidden]="!this.authService.isAuthenticated()"></app-match>
+<app-mailchimp id="subscribe"></app-mailchimp>
