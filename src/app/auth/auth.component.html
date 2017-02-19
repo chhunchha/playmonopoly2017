@@ -16,7 +16,7 @@
         <li class="nav-item">
           <a class="nav-link"  href="http://eepurl.com/cCKagX" target="_blank">Subscribe</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" [hidden]="!this.authService.isAuthenticated()">
           <a class="nav-link"  href="#help" target="_self">Help</a>
         </li>
       </ul>
