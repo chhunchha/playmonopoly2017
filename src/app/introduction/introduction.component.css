@@ -12,9 +12,8 @@
     padding-top: 70px;
 	width: 100%;
 	background: rgba(255, 255, 255, 0.6);
-    height: calc(100vh - 88px);;
-    min-height: calc(100vh - 88px);;
-    /*position: absolute;*/
+    height: 100vh;
+    min-height: 100vh;
     display: block;
     position: relative;
 }
