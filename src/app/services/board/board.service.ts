@@ -5,8 +5,7 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
 export class BoardService {
 
   board: FirebaseListObservable<any[]>;
-  constructor(public af: AngularFire) { 
-  }
+  constructor(public af: AngularFire) { }
 
   getBoardData() {
     this.board = this.af.database.list('/prize', {

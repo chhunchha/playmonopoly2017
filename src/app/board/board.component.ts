@@ -31,7 +31,6 @@ export class BoardComponent implements OnInit {
   ) {
     authService.userChangeAnnounced$.subscribe(user => {
       this.currentUser = this.authService.user;
-      // this.board = this.boardService.getBoardData();
       if (this.authService.isAuthenticated()) {
         this.userTicketsObservable = this.userTicketsService.getUserTickets();
 
@@ -120,5 +119,15 @@ export class BoardComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+
+  totalTickets() {
+    let total_tickets = 0;
+    _.forEach(this.user_tickets, function (no, ticket) {
+      if (!isNaN(Number(no))) {
+        total_tickets += no;
+      }
+    });
+    return total_tickets;
   }
 }
