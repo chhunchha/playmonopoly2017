@@ -26,6 +26,7 @@ export class MatchComponent implements OnInit {
   match_button_label = this.default_match_button_label;
   closeResult: string;
   message = {};
+  prizes_can_be_won: any;
 
   constructor(
     public boardService: BoardService,
@@ -36,6 +37,7 @@ export class MatchComponent implements OnInit {
     public usersService: UsersService
   ) {
     this.all_matches = [];
+    this.prizes_can_be_won = [];
     authService.userChangeAnnounced$.subscribe(user => {
       this.currentUser = this.authService.user;
       if (this.authService.isAuthenticated()) {
@@ -90,13 +92,21 @@ export class MatchComponent implements OnInit {
     });
     console.log('User has: ' + user_has_tickets);
 
+    const user_has_tickets_filter = _.filter(this.all_users_tickets, function(value, key){
+        return value > 0;
+      });
+
+    console.log('User has (filter): ' + user_has_tickets_filter);
+
+    console.log('User has: ' + user_has_tickets);
+
     // Getting ticket codes which user doesn't have , filtering from all ticket codes.
     const user_doesnt_have: any = _.filter(all_ticket_codes, function (ticket) {
       return _.indexOf(user_has_tickets, ticket) === -1 && ticket !== '$key';
     });
     console.log('User doesn\'t have: ' + user_doesnt_have);
 
-    // Getting people with missing tickets, searching through all of tickets or all of the users
+    // searching through all of tickets of all the users which are missing for this user.
     const all_available_tickets: any = {};
     _.mapKeys(this.all_users_tickets, function (tickets, uid) {
       const user_tickets: any = tickets;
@@ -119,7 +129,7 @@ export class MatchComponent implements OnInit {
       prize = that.findPrizeForTicket(ticket);
       details.prize = prize.name;
       details.order = prize.order;
-    })
+    });
 
     // sorting tickets by order of their prize to display
     this.all_matches = _.sortBy(
@@ -127,10 +137,12 @@ export class MatchComponent implements OnInit {
       function (ele) {
         return ele[1].order;
       }).reverse();
-    console.log(all_available_tickets);
+    console.log(this.all_matches);
 
     this.searched = true;
     this.match_button_label = 'Refresh';
+
+    this.which_prize_can_be_won();
   }
 
   show_user_details = function(match, content) {
@@ -143,7 +155,7 @@ export class MatchComponent implements OnInit {
     });
 
     this.open(content);
-  }
+  };
 
   open(content) {
     this.modalService.open(content).result.then((result) => {
@@ -163,4 +175,57 @@ export class MatchComponent implements OnInit {
     }
   }
 
+  which_prize_can_be_won() {
+    const all_available_tickets: any = {};
+    _.mapKeys(this.all_users_tickets, function (tickets: any, uid) {
+      const that = this;
+      _.mapKeys(tickets, function (no, ticket) {
+        if (no > 0) {
+          if (all_available_tickets[ticket] === undefined) {
+            all_available_tickets[ticket] = { users: [uid] };
+          } else {
+            all_available_tickets[ticket].users.push(uid);
+          }
+        }
+      });
+    });
+
+    this.prizes_can_be_won = [];
+    const that = this;
+    _.forEach(this.board, function (prize: any) {
+      let can_be_won = true;
+      const temp: any = { tickets: {} };
+      _.forEach(prize.tickets, function (ticket) {
+        if (all_available_tickets[ticket] === undefined) {
+          can_be_won = false;
+          return;
+        } else {
+          temp.tickets[ticket] = all_available_tickets[ticket];
+        }
+      });
+      if (can_be_won) {
+        temp.prize = prize.name;
+        that.prizes_can_be_won.push(temp);
+      }
+    });
+    console.log(this.prizes_can_be_won);
+  };
+
+  win_details = function(win, content) {
+    const that = this;
+    this.message.title = 'Below users can win ' + win.prize;
+    this.message.text = '<table class=\"table\"><tr><th>Ticket</th><th>Email</th></tr>';
+    _.forEach(win.tickets, function(obj, ticket) {
+        _.forEach(obj.users, function(uid) {
+          that.usersService.getUser(uid)
+          .subscribe(user => {
+            that.message.text += '<tr>';
+            that.message.text += '<td>' + ticket + '</td>';
+            that.message.text += '<td>' + user.email + '</td>';
+            that.message.text += '</tr>';
+          });
+        });
+    });
+    that.open(content);
+  };
 }

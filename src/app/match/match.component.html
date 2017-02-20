@@ -16,6 +16,28 @@
       <div class="text-right mb-2">
         <button class="btn btn-primary card-shadow" (click)="getMissingTickets()">{{match_button_label}}</button>
       </div>
+
+      <table class="table table-sm card-shadow">
+        <tr> 
+          <th colspan="3"> Prizes can be won </th>
+        </tr>
+        <tr [hidden]="!(prizes_can_be_won.length == 0  && searched)"> 
+          <td colspan="3" class="text-center bg-warning">
+            <strong>Looks like we still don't have enough tickets to win any prizes!!</strong>
+          </td>
+        </tr>
+        <tr class="table-info">
+          <th> # </th>
+          <th> Prize </th>
+          <th>  </th>
+        </tr>
+        <tr *ngFor="let win of prizes_can_be_won; let i = index;"> 
+          <td> {{i + 1}} </td>
+          <td> {{win.prize}}</td>
+          <td><button class="btn btn-sm btn-outline-info" (click)="win_details(win, content)">Who has it?</button></td>
+        </tr>
+      </table>
+
       <table class="table table-sm card-shadow">
         <tr [hidden]="!(all_matches.length == 0  && searched)"> 
           <td colspan="5" class="text-center bg-warning">
