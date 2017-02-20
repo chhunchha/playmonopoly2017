@@ -16,3 +16,10 @@ td, th {
 .rare_ticket_star img {
     width: 40px;
 }
+
+.including_mine {
+    display: inline;
+    background: white;
+    padding: 10px;
+    border-radius: 0.3rem;
+}

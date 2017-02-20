@@ -15,8 +15,8 @@
     <div class="col">
       <div class="text-right mb-2">
         <button class="btn btn-primary card-shadow" (click)="getTickets()">{{match_button_label}}</button>
-        <div class="checkbox" style="display: inline;">
-          <label><input type="checkbox" [(ngModel)]="all_of_them" (change)="getTickets()" value=""> Including mine</label>
+        <div class="checkbox card-shadow including_mine">
+          <label><input type="checkbox" [(ngModel)]="all_of_them" (change)="getTickets()"> Including mine</label>
         </div>      
       </div>
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from "../services/auth/auth.service";
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -11,7 +11,7 @@ export class AuthComponent implements OnInit {
   currentUser: any;
 
   constructor(public authService: AuthService) {
-      this.currentUser = this.authService.getCurrentUser();
+    this.currentUser = this.authService.getCurrentUser();
   }
 
   ngOnInit() {
@@ -23,8 +23,8 @@ export class AuthComponent implements OnInit {
 
   getUserPicture() {
     this.currentUser = this.authService.getCurrentUser();
-    if(this.isAuthenticated() && this.currentUser.auth) {
+    if (this.isAuthenticated() && this.currentUser.auth) {
       return this.currentUser.auth.photoURL;
-    } 
+    }
   }
 }
