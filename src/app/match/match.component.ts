@@ -114,14 +114,13 @@ export class MatchComponent implements OnInit {
 
     // searching through all of tickets of all the users which are missing for this user.
     const all_available_tickets: any = {};
-    _.mapKeys(this.all_users_tickets, (tickets, uid) => {
-      const user_tickets: any = tickets;
-      _.mapKeys(user_tickets, (no, ticket) => {
+    _.mapKeys(this.all_users_tickets, (tickets: any, uid) => {
+      _.mapKeys(tickets, (no, ticket) => {
         if (no > 0 && _.indexOf(user_doesnt_have, ticket) !== -1) {
           if (all_available_tickets[ticket] === undefined) {
-            all_available_tickets[ticket] = { users: [uid] };
+            all_available_tickets[ticket] = { users: [{uid, no}] };
           } else {
-            all_available_tickets[ticket].users.push(uid);
+            all_available_tickets[ticket].users.push({uid, no});
           }
         }
       });
@@ -153,9 +152,9 @@ export class MatchComponent implements OnInit {
   show_user_details(match, content) {
     this.message.title = 'Below users have ' + match[0] + '.';
     this.message.text = '<ul>';
-    _.forEach(match[1].users, (uid) => {
-      this.usersService.getUser(uid)
-        .subscribe(user => this.message.text += '<li>' + user.email + '</li>');
+    _.forEach(match[1].users, (info) => {
+      this.usersService.getUser(info.uid)
+        .subscribe(user => this.message.text += '<li>' + user.email +  ' has ' + info.no + ' ticket(s). </li>');
     });
 
     this.open(content);

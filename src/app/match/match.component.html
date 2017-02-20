@@ -47,6 +47,11 @@
             <strong>Looks like one has tickets which you don't have!! <p> Spread the word ask more people to join!</p></strong>
           </td>
         </tr>
+        <tr [hidden]="!(all_matches.length != 0  && searched)"> 
+          <td colspan="6" class="text-center bg-warning">
+            <strong>Wanna make a deal? Send an Email.</strong>
+          </td>
+        </tr>
         <tr class="table-info">
           <th>Rare</th>
           <th> # </th>
