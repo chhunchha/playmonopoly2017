@@ -96,21 +96,21 @@ export class MatchComponent implements OnInit {
         user_has_tickets.push(key);
       }
     });
-    console.log('User has: ' + user_has_tickets);
+    // console.log('User has: ' + user_has_tickets);
 
-    const user_has_tickets_filter = _.filter(this.all_users_tickets, (value, key) => {
-      return value > 0;
-    });
+    // const user_has_tickets_filter = _.filter(this.all_users_tickets, (value, key) => {
+    //   return value > 0;
+    // });
 
-    console.log('User has (filter): ' + user_has_tickets_filter);
+    // console.log('User has (filter): ' + user_has_tickets_filter);
 
-    console.log('User has: ' + user_has_tickets);
+    // console.log('User has: ' + user_has_tickets);
 
     // Getting ticket codes which user doesn't have , filtering from all ticket codes.
     const user_doesnt_have: any = _.filter(all_ticket_codes, (ticket) => {
       return _.indexOf(user_has_tickets, ticket) === -1 && ticket !== '$key';
     });
-    console.log('User doesn\'t have: ' + user_doesnt_have);
+    // console.log('User doesn\'t have: ' + user_doesnt_have);
 
     // searching through all of tickets of all the users which are missing for this user.
     const all_available_tickets: any = {};
@@ -142,7 +142,7 @@ export class MatchComponent implements OnInit {
       (ele) => {
         return ele[1].order;
       }).reverse();
-    console.log(this.all_matches);
+    // console.log(this.all_matches);
 
     this.searched = true;
     this.match_button_label = 'Refresh';
@@ -210,7 +210,7 @@ export class MatchComponent implements OnInit {
         this.prizes_can_be_won.push(temp);
       }
     });
-    console.log(this.prizes_can_be_won);
+    // console.log(this.prizes_can_be_won);
   };
 
   win_details(win, content) {
