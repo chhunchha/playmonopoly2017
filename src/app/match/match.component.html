@@ -14,7 +14,10 @@
   <div class="row">
     <div class="col">
       <div class="text-right mb-2">
-        <button class="btn btn-primary card-shadow" (click)="getMissingTickets()">{{match_button_label}}</button>
+        <button class="btn btn-primary card-shadow" (click)="getTickets()">{{match_button_label}}</button>
+        <div class="checkbox" style="display: inline;">
+          <label><input type="checkbox" [(ngModel)]="all_of_them" (change)="getTickets()" value=""> Including mine</label>
+        </div>      
       </div>
 
       <table class="table table-sm card-shadow">
@@ -49,7 +52,7 @@
         </tr>
         <tr [hidden]="!(all_matches.length != 0  && searched)"> 
           <td colspan="6" class="text-center bg-warning">
-            <strong>Wanna make a deal? Send an Email.</strong>
+            <strong>Wanna make a deal? Send an email to person from who has it list.</strong>
           </td>
         </tr>
         <tr class="table-info">

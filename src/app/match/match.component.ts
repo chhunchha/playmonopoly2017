@@ -22,11 +22,12 @@ export class MatchComponent implements OnInit {
   all_users_tickets: any;
   all_matches: any;
   searched = false;
-  default_match_button_label = 'Find Tickets';
+  default_match_button_label = 'Get Tickets';
   match_button_label = this.default_match_button_label;
   closeResult: string;
   message: any = {};
   prizes_can_be_won: any;
+  all_of_them = false;
 
   constructor(
     public boardService: BoardService,
@@ -77,7 +78,7 @@ export class MatchComponent implements OnInit {
     return _.find(this.board, ['$key', this.tickets[ticket].prize]) || null;
   }
 
-  getMissingTickets() {
+  getTickets() {
     this.searched = false;
     this.match_button_label = this.default_match_button_label;
     // Get all ticket codes from tickets data
@@ -112,11 +113,13 @@ export class MatchComponent implements OnInit {
     });
     // console.log('User doesn\'t have: ' + user_doesnt_have);
 
+    const search_for_tickets = this.all_of_them ? all_ticket_codes : user_doesnt_have;
+
     // searching through all of tickets of all the users which are missing for this user.
     const all_available_tickets: any = {};
     _.mapKeys(this.all_users_tickets, (tickets: any, uid) => {
       _.mapKeys(tickets, (no, ticket) => {
-        if (no > 0 && _.indexOf(user_doesnt_have, ticket) !== -1) {
+        if (no > 0 && _.indexOf(search_for_tickets, ticket) !== -1) {
           if (all_available_tickets[ticket] === undefined) {
             all_available_tickets[ticket] = { users: [{uid, no}] };
           } else {
