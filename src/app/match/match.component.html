@@ -38,6 +38,9 @@
         </tr>
       </table>
 
+      <div class="form-group form-inline">
+        <input type="text" class="form-control col-sm-12 col-md-4 card-shadow" id="searchTicket" placeholder="Seach" [(ngModel)]="search_match">
+      </div>
       <table class="table table-sm card-shadow">
         <tr [hidden]="!(all_matches.length == 0  && searched)"> 
           <td colspan="6" class="text-center bg-warning">
@@ -52,13 +55,16 @@
           <th> No of users </th>
           <th></th>
         </tr>
-        <tr *ngFor="let match of all_matches; let i = index;"> 
+        <tr *ngFor="let match of all_matches | matchFilter : search_match;  let i = index;"> 
           <td class="rare_ticket_star"><img *ngIf="match[1].rare" src="./assets/images/star.png"></td>
           <td> {{i + 1}} </td>
           <td> {{match[0]}}</td>
           <td> {{match[1].prize}}</td>
           <td> {{match[1].users.length}}</td>
-          <td><button class="btn btn-sm btn-outline-info" (click)="show_user_details(match, content)">Who has it?</button></td>
+          <td>
+            <button class="btn btn-sm btn-outline-info" (click)="show_user_details(match, content)">Who has it?</button>
+            <button class="btn btn-sm btn-outline-info" (click)="want_to_buy(match, content)">Deal?</button>
+          </td>
         </tr>
       </table>
     </div>
