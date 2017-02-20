@@ -40,11 +40,12 @@
 
       <table class="table table-sm card-shadow">
         <tr [hidden]="!(all_matches.length == 0  && searched)"> 
-          <td colspan="5" class="text-center bg-warning">
+          <td colspan="6" class="text-center bg-warning">
             <strong>Looks like one has tickets which you don't have!! <p> Spread the word ask more people to join!</p></strong>
           </td>
         </tr>
         <tr class="table-info">
+          <th>Rare</th>
           <th> # </th>
           <th> Ticket Code </th>
           <th> Prize </th>
@@ -52,6 +53,7 @@
           <th></th>
         </tr>
         <tr *ngFor="let match of all_matches; let i = index;"> 
+          <td class="rare_ticket_star"><img *ngIf="match[1].rare" src="./assets/images/star.png"></td>
           <td> {{i + 1}} </td>
           <td> {{match[0]}}</td>
           <td> {{match[1].prize}}</td>

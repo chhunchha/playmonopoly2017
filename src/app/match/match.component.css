@@ -7,3 +7,12 @@
 td, th {
     padding-left: 10px;
 }
+
+.rare_ticket_star {
+    width: 40px;
+    text-align: right;
+}
+
+.rare_ticket_star img {
+    width: 40px;
+}

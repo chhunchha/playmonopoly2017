@@ -25,7 +25,7 @@ export class MatchComponent implements OnInit {
   default_match_button_label = 'Find Tickets';
   match_button_label = this.default_match_button_label;
   closeResult: string;
-  message = {};
+  message: any = {};
   prizes_can_be_won: any;
 
   constructor(
@@ -85,36 +85,41 @@ export class MatchComponent implements OnInit {
 
     // Getting ticket codes which user has 1 or more
     const user_has_tickets = [];
-    _.mapKeys(this.user_tickets, function (value, key) {
+    _.mapKeys(this.user_tickets, (value, key) => {
+      if (value > 0) {
+        user_has_tickets.push(key);
+      }
+    });
+
+    _.mapKeys(this.user_tickets, (value, key) => {
       if (value > 0) {
         user_has_tickets.push(key);
       }
     });
     console.log('User has: ' + user_has_tickets);
 
-    const user_has_tickets_filter = _.filter(this.all_users_tickets, function(value, key){
-        return value > 0;
-      });
+    const user_has_tickets_filter = _.filter(this.all_users_tickets, (value, key) => {
+      return value > 0;
+    });
 
     console.log('User has (filter): ' + user_has_tickets_filter);
 
     console.log('User has: ' + user_has_tickets);
 
     // Getting ticket codes which user doesn't have , filtering from all ticket codes.
-    const user_doesnt_have: any = _.filter(all_ticket_codes, function (ticket) {
+    const user_doesnt_have: any = _.filter(all_ticket_codes, (ticket) => {
       return _.indexOf(user_has_tickets, ticket) === -1 && ticket !== '$key';
     });
     console.log('User doesn\'t have: ' + user_doesnt_have);
 
     // searching through all of tickets of all the users which are missing for this user.
     const all_available_tickets: any = {};
-    _.mapKeys(this.all_users_tickets, function (tickets, uid) {
+    _.mapKeys(this.all_users_tickets, (tickets, uid) => {
       const user_tickets: any = tickets;
-      const that = this;
-      _.mapKeys(user_tickets, function (no, ticket) {
+      _.mapKeys(user_tickets, (no, ticket) => {
         if (no > 0 && _.indexOf(user_doesnt_have, ticket) !== -1) {
           if (all_available_tickets[ticket] === undefined) {
-            all_available_tickets[ticket] = {users: [uid]};
+            all_available_tickets[ticket] = { users: [uid] };
           } else {
             all_available_tickets[ticket].users.push(uid);
           }
@@ -123,18 +128,18 @@ export class MatchComponent implements OnInit {
     });
 
     // setting prize of those tickets found
-    const that = this;
-    _.forEach(all_available_tickets, function (details, ticket) {
+    _.forEach(all_available_tickets, (details, ticket) => {
       let prize: any;
-      prize = that.findPrizeForTicket(ticket);
+      prize = this.findPrizeForTicket(ticket);
       details.prize = prize.name;
       details.order = prize.order;
+      details.rare = this.tickets[ticket].rare;
     });
 
     // sorting tickets by order of their prize to display
     this.all_matches = _.sortBy(
       _.toPairs(all_available_tickets),
-      function (ele) {
+      (ele) => {
         return ele[1].order;
       }).reverse();
     console.log(this.all_matches);
@@ -145,13 +150,12 @@ export class MatchComponent implements OnInit {
     this.which_prize_can_be_won();
   }
 
-  show_user_details = function(match, content) {
-    const that = this;
+  show_user_details(match, content) {
     this.message.title = 'Below users have ' + match[0] + '.';
     this.message.text = '<ul>';
-    _.forEach(match[1].users, function(uid) {
-        that.usersService.getUser(uid)
-        .subscribe(user => that.message.text += '<li>' + user.email + '</li>');
+    _.forEach(match[1].users, (uid) => {
+      this.usersService.getUser(uid)
+        .subscribe(user => this.message.text += '<li>' + user.email + '</li>');
     });
 
     this.open(content);
@@ -177,9 +181,8 @@ export class MatchComponent implements OnInit {
 
   which_prize_can_be_won() {
     const all_available_tickets: any = {};
-    _.mapKeys(this.all_users_tickets, function (tickets: any, uid) {
-      const that = this;
-      _.mapKeys(tickets, function (no, ticket) {
+    _.mapKeys(this.all_users_tickets, (tickets: any, uid) => {
+      _.mapKeys(tickets, (no, ticket) => {
         if (no > 0) {
           if (all_available_tickets[ticket] === undefined) {
             all_available_tickets[ticket] = { users: [uid] };
@@ -191,11 +194,10 @@ export class MatchComponent implements OnInit {
     });
 
     this.prizes_can_be_won = [];
-    const that = this;
-    _.forEach(this.board, function (prize: any) {
+    _.forEach(this.board, (prize: any) => {
       let can_be_won = true;
       const temp: any = { tickets: {} };
-      _.forEach(prize.tickets, function (ticket) {
+      _.forEach(prize.tickets, (ticket) => {
         if (all_available_tickets[ticket] === undefined) {
           can_be_won = false;
           return;
@@ -205,27 +207,26 @@ export class MatchComponent implements OnInit {
       });
       if (can_be_won) {
         temp.prize = prize.name;
-        that.prizes_can_be_won.push(temp);
+        this.prizes_can_be_won.push(temp);
       }
     });
     console.log(this.prizes_can_be_won);
   };
 
-  win_details = function(win, content) {
-    const that = this;
+  win_details(win, content) {
     this.message.title = 'Below users can win ' + win.prize;
     this.message.text = '<table class=\"table\"><tr><th>Ticket</th><th>Email</th></tr>';
-    _.forEach(win.tickets, function(obj, ticket) {
-        _.forEach(obj.users, function(uid) {
-          that.usersService.getUser(uid)
+    _.forEach(win.tickets, (obj, ticket) => {
+      _.forEach(obj.users, (uid) => {
+        this.usersService.getUser(uid)
           .subscribe(user => {
-            that.message.text += '<tr>';
-            that.message.text += '<td>' + ticket + '</td>';
-            that.message.text += '<td>' + user.email + '</td>';
-            that.message.text += '</tr>';
+            this.message.text += '<tr>';
+            this.message.text += '<td>' + ticket + '</td>';
+            this.message.text += '<td>' + user.email + '</td>';
+            this.message.text += '</tr>';
           });
-        });
+      });
     });
-    that.open(content);
+    this.open(content);
   };
 }

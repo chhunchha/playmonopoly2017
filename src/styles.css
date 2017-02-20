@@ -10,3 +10,7 @@ span.no_selection {
     -khtml-user-select: none; /* webkit (konqueror) browsers */
     -ms-user-select: none; /* IE10+ */
 }
+
+.row {
+    margin: 0 !important;
+}
