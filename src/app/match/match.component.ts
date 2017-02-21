@@ -154,10 +154,10 @@ export class MatchComponent implements OnInit {
 
   show_user_details(match, content) {
     this.message.title = 'Below users have ' + match[0] + '.';
-    this.message.text = '<ul>';
+    this.message.text = '<table class=\"table table-responsive table-sm\">';
     _.forEach(match[1].users, (info) => {
       this.usersService.getUser(info.uid)
-        .subscribe(user => this.message.text += '<li>' + user.email +  ' has ' + info.no + ' ticket(s). </li>');
+        .subscribe(user => this.message.text += '<tr><td>' + user.email +  ' has ' + info.no + ' ticket(s). </td></tr>');
     });
 
     this.open(content);
@@ -217,7 +217,7 @@ export class MatchComponent implements OnInit {
 
   win_details(win, content) {
     this.message.title = 'Below users can win ' + win.prize;
-    this.message.text = '<table class=\"table\"><tr><th>Ticket</th><th>Email</th></tr>';
+    this.message.text = '<table class=\"table table-responsive table-sm\"><tr><th>Ticket</th><th>Email</th></tr>';
     _.forEach(win.tickets, (obj, ticket) => {
       _.forEach(obj.users, (uid) => {
         this.usersService.getUser(uid)

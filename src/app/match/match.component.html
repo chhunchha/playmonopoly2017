@@ -20,7 +20,7 @@
         </div>      
       </div>
 
-      <table class="table table-sm card-shadow">
+      <table class="table table-sm card-shadow table-responsive">
         <tr> 
           <th colspan="3"> Prizes can be won </th>
         </tr>
@@ -44,7 +44,7 @@
       <div class="form-group form-inline">
         <input type="text" class="form-control col-sm-12 col-md-4 card-shadow" id="searchTicket" placeholder="Seach" [(ngModel)]="search_match">
       </div>
-      <table class="table table-sm card-shadow">
+      <table class="table table-sm card-shadow table-responsive">
         <tr [hidden]="!(all_matches.length == 0  && searched)"> 
           <td colspan="6" class="text-center bg-warning">
             <strong>Looks like one has tickets which you don't have!! <p> Spread the word ask more people to join!</p></strong>
