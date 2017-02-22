@@ -14,3 +14,11 @@ span.no_selection {
 .row {
     margin: 0 !important;
 }
+
+.col {
+    padding: 0;
+}
+
+.table-responsive {
+    display: table !important;
+}
