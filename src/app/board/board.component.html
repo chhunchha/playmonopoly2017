@@ -54,6 +54,8 @@
             <div class="minus-button" (click)="decrement(ticket)">
               &mdash;
             </div>
+            <div class="star_on_ticket rare_ticket_star"><img *ngIf="tickets[ticket].rare" src="./assets/images/star.png"></div>
+
           </div>
         </div>
       </div>

@@ -22,3 +22,12 @@ span.no_selection {
 .table-responsive {
     display: table !important;
 }
+
+.rare_ticket_star {
+    width: 40px;
+    text-align: right;
+}
+
+.rare_ticket_star img {
+    width: 40px;
+}
