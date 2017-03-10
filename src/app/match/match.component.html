@@ -14,6 +14,7 @@
   <div class="row">
     <div class="col">
       <div class="text-right mb-2">
+        <app-total-tickets></app-total-tickets>
         <button class="btn btn-primary card-shadow" (click)="getTickets()">{{match_button_label}}</button>
         <div class="checkbox card-shadow including_mine">
           <label><input type="checkbox" [(ngModel)]="all_of_them" (change)="getTickets()"> Including mine</label>

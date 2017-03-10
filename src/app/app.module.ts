@@ -25,6 +25,7 @@ import { IntroductionComponent } from './introduction/introduction.component';
 import { MatchComponent } from './match/match.component';
 import { MailchimpComponent } from './mailchimp/mailchimp.component';
 import { MatchFilterPipe } from './pipes/match-filter.pipe';
+import { TotalTicketsComponent } from './total-tickets/total-tickets.component';
 
 // Must export the config
 export const firebaseConfig = {
@@ -49,7 +50,8 @@ const authConfig = {
     IntroductionComponent,
     MatchComponent,
     MailchimpComponent,
-    MatchFilterPipe
+    MatchFilterPipe,
+    TotalTicketsComponent
   ],
   imports: [
     BrowserModule,

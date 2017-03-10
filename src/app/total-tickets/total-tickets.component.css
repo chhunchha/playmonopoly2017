@@ -1,0 +1,8 @@
+.total-tickets {
+    font-size: 20px;
+    display: inline-block;
+}
+
+.total-tickets span {
+    font-weight: 600;
+}
