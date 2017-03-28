@@ -1,0 +1,47 @@
+<div class="container card-shadow mb-5">
+  <div class="row">
+    <div class="col">
+      <h3> Select user to see the tickets on his board</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <input type="checkbox" [(ngModel)]="hide_common"> Hide common tickets
+    </div>
+    <div class="col-6">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{selectedUser?.email || 'Select User'}}
+        </button>
+        <div class="dropdown-menu user-emails-list" aria-labelledby="dropdownMenuButton">
+          <a *ngFor="let user of users" class="dropdown-item" (click)="selectUser(user)">{{user.email}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row pt-3">
+      <div class="col-6">
+        <table class="ticket-exchange">
+          <tr>
+            <th class="text-center"> My Tickets </th>
+          </tr>
+          <tr *ngFor="let ticket of user_tickets" [hidden]="hide_common && ticket.canOffer >=0" [ngClass]="{'can-offer': !hide_common && ticket.canOffer < 0 }">
+            <td>{{tickets[ticket.$key].name}}</td>
+            <td>{{ticket.$value}}</td>
+          </tr>
+        </table>
+      </div> 
+      <div class="col-6">
+        <table class="ticket-exchange">
+          <tr>
+            <th class="text-center"> {{selectedUser?.email}} ({{total_tickets_of_other_user}}) </th>
+          </tr>
+          <tr *ngFor="let ticket of other_user_tickets" [hidden]="hide_common && ticket.canOffer >=0" [ngClass]="{'can-offer': !hide_common && ticket.canOffer < 0 }">
+            <td>{{tickets[ticket.$key].name}}</td>
+            <td>{{ticket.$value}}</td>
+          </tr>
+        </table>
+      </div> 
+      <!--<input class="btn btn-primary" (click)="compare()">Compare</input>-->
+    </div>
+  </div>

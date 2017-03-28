@@ -24,4 +24,8 @@ export class UsersService {
   getUser(uid) {
     return this.af.database.object('/users/' + uid);
   }
+
+  getUsersArray() {
+    return this.af.database.list('/users');
+  }
 }

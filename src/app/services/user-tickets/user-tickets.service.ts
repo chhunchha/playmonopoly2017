@@ -15,12 +15,22 @@ export class UserTicketsService {
     );
   }
 
+  getUserTicketsList() {
+        if (this.authService.isAuthenticated()) {
+          return this.af.database.list('user_tickets/' + this.currentUser.uid);
+      }
+  }
+
   getUserTickets() {
     if (this.authService.isAuthenticated()) {
       this.user_tickets = this.af.database.object('user_tickets/' + this.currentUser.uid);
-      // console.log(this.user_tickets);
-      // console.log(this.currentUser.uid);
       return this.user_tickets;
+    }
+  }
+
+  getUserTicketsById(id) {
+    if (this.authService.isAuthenticated()) {
+      return this.af.database.list('user_tickets/' + id);
     }
   }
 
