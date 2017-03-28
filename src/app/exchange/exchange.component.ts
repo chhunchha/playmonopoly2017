@@ -45,7 +45,7 @@ export class ExchangeComponent implements OnInit {
         this.userTicketsService.getUserTicketsList()
           .subscribe(user_tickets => {
             this.user_tickets = _.filter(user_tickets,
-              function(ticket) {
+              function (ticket) {
                 return ticket.$value > 0;
               });
           });
@@ -62,7 +62,7 @@ export class ExchangeComponent implements OnInit {
 
         this.usersService.getUsersArray()
           .subscribe(users => {
-            this.users = users;
+            this.users = _.sortBy(users, user => user.email);
           });
       }
     });
@@ -77,16 +77,16 @@ export class ExchangeComponent implements OnInit {
       this.selectedUser = user;
       this.total_tickets_of_other_user = 0;
       this.userTicketsService.getUserTicketsById(user.$key)
-      .subscribe(other_user_tickets => {
-        this.other_user_tickets = _.filter(other_user_tickets,
-          (ticket) => {
-            this.total_tickets_of_other_user += ticket.$value;
-            return ticket.$value > 0;
-          });
+        .subscribe(other_user_tickets => {
+          this.other_user_tickets = _.filter(other_user_tickets,
+            (ticket) => {
+              this.total_tickets_of_other_user += ticket.$value;
+              return ticket.$value > 0;
+            });
 
           this.canOffer();
         }
-      );
+        );
     }
   }
 

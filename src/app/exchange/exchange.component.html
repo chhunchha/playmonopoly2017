@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col">
       <h3> Select user to see the tickets on his board</h3>
+      <h5> Tickets marked green in your list is what you can offer to other user and Tickets marked green in other user's list is what he can offer to you.</h5>
     </div>
   </div>
   <div class="row">
@@ -25,7 +26,7 @@
           <tr>
             <th class="text-center"> My Tickets </th>
           </tr>
-          <tr *ngFor="let ticket of user_tickets" [hidden]="hide_common && ticket.canOffer >=0" [ngClass]="{'can-offer': !hide_common && ticket.canOffer < 0 }">
+          <tr *ngFor="let ticket of user_tickets" [hidden]="hide_common && ticket.canOffer >=0" [ngClass]="{'can-offer': ticket.canOffer < 0 }">
             <td>{{tickets[ticket.$key].name}}</td>
             <td>{{ticket.$value}}</td>
           </tr>
@@ -36,7 +37,7 @@
           <tr>
             <th class="text-center"> {{selectedUser?.email}} ({{total_tickets_of_other_user}}) </th>
           </tr>
-          <tr *ngFor="let ticket of other_user_tickets" [hidden]="hide_common && ticket.canOffer >=0" [ngClass]="{'can-offer': !hide_common && ticket.canOffer < 0 }">
+          <tr *ngFor="let ticket of other_user_tickets" [hidden]="hide_common && ticket.canOffer >=0" [ngClass]="{'can-offer': ticket.canOffer < 0 }">
             <td>{{tickets[ticket.$key].name}}</td>
             <td>{{ticket.$value}}</td>
           </tr>
