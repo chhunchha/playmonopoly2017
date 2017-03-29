@@ -14,20 +14,20 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item" [hidden]="!this.authService.isAuthenticated()">
-          <a class="nav-link"  href="#board" target="_self">Board</a>
+          <a class="nav-link"  routerLink="/board" routerLinkActive="active" >Board</a>
         </li>
         <li class="nav-item" [hidden]="!this.authService.isAuthenticated()">
-          <a class="nav-link"  href="#match" target="_self">Match</a>
+          <a class="nav-link"  routerLink="/match" routerLinkActive="active">Match</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link"  href="#exchange" target="_self">Exchange</a>
+        <li class="nav-item" [hidden]="!this.authService.isAuthenticated()">
+          <a class="nav-link"  routerLink="/exchange" routerLinkActive="active">Exchange</a>
         </li>
         <li class="nav-item">
           <a class="nav-link"  href="http://eepurl.com/cCKagX" target="_blank">Subscribe</a>
         </li>
-        <li class="nav-item" [hidden]="!this.authService.isAuthenticated()">
+        <!--<li class="nav-item" [hidden]="!this.authService.isAuthenticated()">
           <a class="nav-link"  href="#help" target="_self">Help</a>
-        </li>
+        </li>-->
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <button class="btn btn-secondary my-2 my-sm-0" (click)="authService.login()" [hidden]="isAuthenticated()">Sign In</button>        

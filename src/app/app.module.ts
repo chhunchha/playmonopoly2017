@@ -19,7 +19,7 @@ import { TicketsService } from './services/tickets/tickets.service';
 import { UsersService } from './services/users/users.service';
 
 
-import * as _ from "lodash";
+import * as _ from 'lodash';
 import { TicketFilterPipe } from './pipes/ticket-filter.pipe';
 import { IntroductionComponent } from './introduction/introduction.component';
 import { MatchComponent } from './match/match.component';
@@ -27,6 +27,8 @@ import { MailchimpComponent } from './mailchimp/mailchimp.component';
 import { MatchFilterPipe } from './pipes/match-filter.pipe';
 import { TotalTicketsComponent } from './total-tickets/total-tickets.component';
 import { ExchangeComponent } from './exchange/exchange.component';
+import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './services/auth/auth-guard.service';
 
 // Must export the config
 export const firebaseConfig = {
@@ -41,6 +43,12 @@ const authConfig = {
   provider: AuthProviders.Google,
   method: AuthMethods.Popup
 };
+
+const appRoutes: Routes = [
+  { path: 'board', component: BoardComponent, canActivate: [AuthGuard] },
+  { path: 'match', component: MatchComponent, canActivate: [AuthGuard] },
+  { path: 'exchange', component: ExchangeComponent, canActivate: [AuthGuard] }
+];
 
 @NgModule({
   declarations: [
@@ -60,10 +68,11 @@ const authConfig = {
     FormsModule,
     HttpModule,
     NgbModule.forRoot(),
+    RouterModule.forRoot(appRoutes),
     // MaterialModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig, authConfig, 'playmonopoly2017'),
   ],
-  providers: [AuthService, BoardService, UserTicketsService, TicketsService, UsersService],
+  providers: [AuthService, BoardService, UserTicketsService, TicketsService, UsersService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

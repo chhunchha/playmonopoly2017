@@ -1,7 +1,8 @@
 <app-auth></app-auth>
 <div style="height: 100vh; overflow-y: auto;" class="col-12 p-0 m-0">
     <app-introduction [hidden]="this.authService.isAuthenticated()"></app-introduction>
-    <app-board id="board" [hidden]="!this.authService.isAuthenticated()"></app-board>
+    <router-outlet></router-outlet>
+    <!--<app-board id="board" [hidden]="!this.authService.isAuthenticated()"></app-board>-->
     <div [hidden]="!this.authService.isAuthenticated()" id="help" class="row">
         <div style="margin-top: 4rem" class="col card-shadow alert alert-warning text-center">
             <strong >
@@ -9,7 +10,7 @@
             </strong>
         </div>
     </div>
-    <app-match id="match" [hidden]="!this.authService.isAuthenticated()"></app-match>
-    <app-exchange id="exchange" [hidden]="!this.authService.isAuthenticated()"></app-exchange>
+    <!--<app-match id="match" [hidden]="!this.authService.isAuthenticated()"></app-match>-->
+    <!--<app-exchange id="exchange" [hidden]="!this.authService.isAuthenticated()"></app-exchange>-->
 </div>
 

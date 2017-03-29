@@ -1,19 +1,21 @@
 import { Injectable } from '@angular/core';
 import { AngularFire, AuthProviders } from 'angularfire2';
-import { Subject } from 'rxjs/Subject';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { UsersService } from '../users/users.service';
 
 import * as _ from 'lodash';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService {
   user;
-  userChange: Subject<any> = new Subject<any>();
+  userChange: BehaviorSubject<any> = new BehaviorSubject<any>({});
   userChangeAnnounced$ = this.userChange.asObservable();
 
   constructor(
     public af: AngularFire,
-    public usersService: UsersService) {
+    public usersService: UsersService,
+    private router: Router) {
 
     this.af.auth.subscribe(user => {
       if (user) {
@@ -28,6 +30,7 @@ export class AuthService {
           //   photoURL: this.user.auth.photoURL,
           // }
           usersService.add(newUser);
+          this.router.navigate(['/board']);
         }
         // console.log(this.user);
       } else {
@@ -46,6 +49,7 @@ export class AuthService {
 
   logout() {
     this.af.auth.logout();
+    this.router.navigate(['/']);
   }
 
   isAuthenticated() {
