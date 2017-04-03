@@ -1,14 +1,16 @@
 <template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h4 class="modal-title">{{message.title}}</h4>
+    <h4 class="modal-title">{{message?.title}}</h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    <div [innerHTML]="message.text"></div>
+    <div [innerHTML]="message?.text"></div>
   </div>
 </template>
+
+<template ngbModalContainer></template>
 
 <div class="container">
   <div class="row">
