@@ -29,7 +29,7 @@
         </tr>
         <tr [hidden]="!(prizes_can_be_won.length == 0  && searched)"> 
           <td colspan="3" class="text-center bg-warning">
-            <strong>Looks like we still don't have enough tickets to win any prizes!!</strong>
+            <strong>Loading...</strong>
           </td>
         </tr>
         <tr class="table-info">
@@ -50,7 +50,7 @@
       <table class="table table-sm card-shadow table-responsive">
         <tr [hidden]="!(all_matches.length == 0  && searched)"> 
           <td colspan="6" class="text-center bg-warning">
-            <strong>Looks like one has tickets which you don't have!! <p> Spread the word ask more people to join!</p></strong>
+            <strong>Loading...</strong>
           </td>
         </tr>
         <tr [hidden]="!(all_matches.length != 0  && searched)"> 
